@@ -18,6 +18,8 @@
 
 tw-story {
   font-family: 'Noto Sans', system-ui, -apple-system, sans-serif;
+  /* clamp(min, preferred, max): scales with viewport, stays readable */
+  font-size: clamp(1.15rem, 4.2vw, 1.35rem);
   line-height: 1.6;
   padding: 0;
   margin: 0;
@@ -28,7 +30,7 @@ tw-story {
 tw-passage {
   max-width: 640px;
   margin: 0 auto;
-  padding: 24px 20px 80px;
+  padding: 1.5rem 1.25rem 5rem;
   animation: fadeIn 0.4s ease;
 }
 
@@ -40,12 +42,12 @@ tw-passage {
 tw-link, .enchantment-link {
   display: block;
   width: 100%;
-  padding: 14px 20px;
-  margin: 8px 0;
+  padding: 0.875rem 1.25rem;
+  margin: 0.5rem 0;
   border-radius: 6px;
   text-decoration: none;
-  font-size: 16px;
-  min-height: 48px;
+  font-size: 0.9em;
+  min-height: 3rem;
   box-sizing: border-box;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -57,12 +59,8 @@ tw-passage em {
 }
 
 @media (min-width: 768px) {
-  tw-story { font-size: 20px; }
-  tw-passage { padding: 40px 24px 80px; }
-}
-
-@media (max-width: 767px) {
-  tw-story { font-size: 18px; }
+  tw-story { font-size: 1.25rem; }
+  tw-passage { padding: 2.5rem 1.5rem 5rem; }
 }
 /* twine-user-stylesheet #2: "theme-graffiti.css" */
 /* Theme: Стена — textured, handwritten, abandoned building */
@@ -236,6 +234,14 @@ html.theme-noir tw-passage em {
   margin-top: 24px;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">(function() {
   'use strict';
+
+  // Mobile viewport — Harlowe 3.1.0 doesn't add this
+  if (!document.querySelector('meta[name="viewport"]')) {
+    var meta = document.createElement('meta');
+    meta.name = 'viewport';
+    meta.content = 'width=device-width, initial-scale=1';
+    document.head.appendChild(meta);
+  }
 
   var THEMES = ['noir', 'graffiti', 'neon'];
   var DEFAULT_THEME = 'noir';
@@ -434,7 +440,7 @@ html.theme-noir tw-passage em {
 
 //Может, завтра.//
 
-[[Начать сначала-&gt;Начало]]</tw-passagedata><tw-passagedata pid="12" name="А чего ты тут один сидишь?" tags="" position="675,675" size="100,100">Он думает.
+[[Начать сначала-&gt;Выбор темы]]</tw-passagedata><tw-passagedata pid="12" name="А чего ты тут один сидишь?" tags="" position="675,675" size="100,100">Он думает.
 
 — Знаешь... Я не один. Я с городом. И вот теперь — с тобой.
 
@@ -489,7 +495,9 @@ html.theme-noir tw-passage em {
 
 Первый раз за долгое время ты ешь не ворованное. А разделённое.
 
-//Конец первой главы.//</tw-passagedata><tw-passagedata pid="16" name="Может, в другой раз." tags="" position="362.5,800" size="100,100">— Ок, — говорит Арчи. Без обиды. — Я никуда не тороплюсь.
+//Конец первой главы.//
+
+[[Начать сначала-&gt;Выбор темы]]</tw-passagedata><tw-passagedata pid="16" name="Может, в другой раз." tags="" position="362.5,800" size="100,100">— Ок, — говорит Арчи. Без обиды. — Я никуда не тороплюсь.
 
 Вы сидите ещё немного. Чай кончился. Город зажёг фонари.
 
@@ -501,7 +509,9 @@ html.theme-noir tw-passage em {
 
 Лестница вниз. Но в этот раз она скрипит по-другому. Как будто... легче.
 
-//Продолжение следует.//</tw-passagedata><tw-passagedata pid="17" name="Рассказать про поляну со звёздами" tags="" position="487.5,800" size="100,100">— Есть место, — говоришь ты. — За гаражами. Поляна. Оттуда видно все звёзды. Вообще все.
+//Продолжение следует.//
+
+[[Начать сначала-&gt;Выбор темы]]</tw-passagedata><tw-passagedata pid="17" name="Рассказать про поляну со звёздами" tags="" position="487.5,800" size="100,100">— Есть место, — говоришь ты. — За гаражами. Поляна. Оттуда видно все звёзды. Вообще все.
 
 Он поворачивается к тебе. Первый раз за вечер — прямо в глаза.
 
@@ -523,7 +533,9 @@ html.theme-noir tw-passage em {
 
 — До завтра.
 
-//Продолжение следует.//</tw-passagedata><tw-passagedata pid="19" name="Уйти молча. Но запомнить." tags="" position="425,800" size="100,100">Ты встаёшь. Отряхиваешь штаны. Идёшь к лестнице.
+//Продолжение следует.//
+
+[[Начать сначала-&gt;Выбор темы]]</tw-passagedata><tw-passagedata pid="19" name="Уйти молча. Но запомнить." tags="" position="425,800" size="100,100">Ты встаёшь. Отряхиваешь штаны. Идёшь к лестнице.
 
 Не оборачиваешься.
 
@@ -531,7 +543,9 @@ html.theme-noir tw-passage em {
 
 Завтра ты придёшь сюда снова. Ты уже знаешь это. Просто ещё не сказал вслух.
 
-//Продолжение следует.//</tw-passagedata><tw-passagedata pid="20" name="Хочу." tags="" position="362.5,800" size="100,100">Он наливает. Та же кружка — крышка термоса. Горячее.
+//Продолжение следует.//
+
+[[Начать сначала-&gt;Выбор темы]]</tw-passagedata><tw-passagedata pid="20" name="Хочу." tags="" position="362.5,800" size="100,100">Он наливает. Та же кружка — крышка термоса. Горячее.
 
 Ты пьёшь. Это не похоже ни на что, что ты пил раньше. Мягкое, цветочное. Как будто весна в чашке.
 
